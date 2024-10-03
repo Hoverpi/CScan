@@ -6,13 +6,13 @@
 // Definición de tipo opaco (no se revela la implementación interna)
 typedef struct strQueue* Queue;
 
-// Declaración de las funciones públicas
-Queue queue_create(void (*destructor)(void*));  // Crea la cola
-int queue_size(Queue);                    // Devuelve el tamaño de la cola
-bool queue_isEmpty(Queue);                 // Verifica si la cola está vacía
-void queue_peek(Queue);                  // Consulta el elemento al frente
-void queue_append(Queue, void);      // Añade un nuevo elemento a la cola
-void queue_pop(Queue);                  // Remueve el elemento al frente
-void queue_destroy(Queue);                // Destruye la cola y libera memoria
+Queue queue_create(void (*destructor)(void*));  // Crea un ejemplar Queue con memoria dinámica
+                                                // y asigna NULL, NULL, 0 y destructor.
+int queue_size(Queue);         // Extrae el tamaño de la cola
+Bool queue_isEmpty(Queue);     // ¿El primero es nulo?
+Type queue_peek (Queue);       // Consulta quién está al frente (no elimina)
+void queue_offer(Queue, Type); // Se forma uno nuevo (colocarlo al final)
+Type queue_poll(Queue);        // Atiende al que está al frente (elimina)
+void queue_destroy(Queue);     // Elimina a todos los nodos y a la cola misma
 
 #endif

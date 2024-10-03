@@ -10,7 +10,7 @@ typedef struct {
 // Definición interna de la estructura (no visible desde fuera)
 typedef struct strNode {
     Netinfo *net;
-    struct strNode* prev;
+    struct strNode* next;
 };
 
 typedef struct strNode *Node;
@@ -19,10 +19,10 @@ typedef struct strQueue {
     struct strNode* first;
     struct strNode* last;
     int size;
-    void (*destructor)();  // Puntero a función destructor
+    void (*destructor)(void*);  // Puntero a función destructor
 };
 
-Queue queue_create(void (*destructor)()) {
+Queue queue_create(void (*destructor)(void*)) {
     Queue q = (Queue) calloc(1, sizeof(strQueue));
     q -> destructor = destructor; 
 
